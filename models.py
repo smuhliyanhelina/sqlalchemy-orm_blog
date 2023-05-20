@@ -25,7 +25,7 @@ class Author(Base):
         default=datetime.datetime.now
     )
 
-    articles = relationship("Article")
+    articles = relationship("Article", cascade="all, delete, delete-orphan")
 
     def __repr__(self):
         return f"Author({self.user_name})"
@@ -49,6 +49,8 @@ class Article(Base):
         ForeignKey("authors.id"),
         nullable=False,
     )
+
+    author = relationship("Author")
 
     def __repr__(self):
         return f"Article({self.title})"

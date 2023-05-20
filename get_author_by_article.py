@@ -3,7 +3,7 @@ from models import Article, Author
 
 
 def main():
-    article = session.query(Article).get(1)
+    article = session.query(Article).get(7)
     author = session.query(Author).get(article.author_id)
     print(article, article.author_id)
 

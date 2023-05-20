@@ -6,7 +6,10 @@ from faker import Faker
 
 
 def main():
-    author = session.query(Author).get(1)
+    author = session.query(Author).filter_by(
+        user_name="Emily"
+    ).one()
+
     import faker
     fake = Faker()
     article = Article(
@@ -19,5 +22,3 @@ def main():
     session.commit()
 
 
-if __name__ == "__main__":
-    main()
