@@ -7,7 +7,7 @@ def main():
     assert author is not None, "Author with id 7 not found"
 
     articles_count = len(author.articles)
-    assert articles_count != 0, "Author has no artices"
+    assert articles_count != 0, "Author has no articles"
 
     session.delete(author)
     session.commit()
