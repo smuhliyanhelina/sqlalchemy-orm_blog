@@ -1,24 +1,19 @@
-import faker
-
 from session import session
-from models import Author, Article
-from faker import Faker
+from models import Hashtag, Article
 
 
 def main():
-    author = session.query(Author).filter_by(
-        user_name="Emily"
-    ).one()
+    hashtag = session.query(Hashtag).get(1)
+    print(f"Articles with #{hashtag.name}:")
+    for article in hashtag.articles:
+        print(article.title)
 
-    import faker
-    fake = Faker()
-    article = Article(
-        title=fake.sentence(),
-        content="New article content"
-
-    )
-
-    author.articles.append(article)
-    session.commit()
+    print("-" * 20)
+    for article in session.query(Article):
+        print(article.title)
+        for hashtag in article.hashtags:
+            print(f"  #{hashtag.name}")
 
 
+if __name__ == "__main__":
+    main()
